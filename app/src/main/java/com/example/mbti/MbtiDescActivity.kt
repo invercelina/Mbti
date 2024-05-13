@@ -37,14 +37,16 @@ class MbtiDescActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent{
+        setContent {
             MbtiTheme {
                 Screening()
             }
         }
     }
+
     @Composable
-    fun MainScreen(paintId : Int,mbti:String, work:String, desc: String) {
+    fun MainScreen(paintId: Int, work: String, desc: String) {
+        val mbti = intent.getStringExtra("mbtiData")
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxHeight()
@@ -60,7 +62,7 @@ class MbtiDescActivity : ComponentActivity() {
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = mbti,
+                text = mbti ?: "",
                 modifier = Modifier
                     .background(Color.Green)
                     .fillMaxWidth(),
@@ -100,13 +102,28 @@ class MbtiDescActivity : ComponentActivity() {
             }
         }
     }
+
     @Composable
     fun Screening() {
         val str = intent.getStringExtra("mbtiData")
-        when(str){
-            "ENFP" -> MainScreen(R.drawable.enfp,"ENFP","활동가","열정적이고 창의적인 성격으로, 긍정적으로 삶을 바라보는 사교적이면서도 자유로운 영혼입니다.")
-            "ISFP" -> MainScreen(paintId = R.drawable.isfp, mbti = "ISFP", work = "모험가", desc = "항상 새로운 경험을 추구하는 유연하고 매력 넘치는 예술가입니다.")
-            "INFP" -> MainScreen(paintId = R.drawable.infp, mbti = "INFP", work = "중재자", desc = "항상 선을 행할 준비가 되어 있는 부드럽고 친절한 이타주의자입니다.")
+        when (str) {
+            "ENFP" -> MainScreen(
+                paintId = R.drawable.enfp,
+                work = "활동가",
+                desc = "열정적이고 창의적인 성격으로, 긍정적으로 삶을 바라보는 사교적이면서도 자유로운 영혼입니다."
+            )
+
+            "ISFP" -> MainScreen(
+                paintId = R.drawable.isfp,
+                work = "모험가",
+                desc = "항상 새로운 경험을 추구하는 유연하고 매력 넘치는 예술가입니다."
+            )
+
+            "INFP" -> MainScreen(
+                paintId = R.drawable.infp,
+                work = "중재자",
+                desc = "항상 선을 행할 준비가 되어 있는 부드럽고 친절한 이타주의자입니다."
+            )
         }
     }
 

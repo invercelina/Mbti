@@ -64,12 +64,13 @@ class MbtiMainActivity : ComponentActivity() {
 
 
     }
+
     @Composable
-    fun MbtiButton(str:String) {
+    fun MbtiButton(str: String) {
         val context = LocalContext.current as? Activity
         Button(onClick = {
             val intent = Intent(context, MbtiDescActivity::class.java)
-            intent.putExtra("mbtiData",str)
+            intent.putExtra("mbtiData", str)
             context?.startActivity(intent)
         }, modifier = Modifier.padding(top = 10.dp, bottom = 30.dp)) {
             Text(text = str)
@@ -78,7 +79,7 @@ class MbtiMainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Painting(paintId :Int) {
+    fun Painting(paintId: Int) {
         Image(
             painter = painterResource(id = paintId),
             contentDescription = null,
