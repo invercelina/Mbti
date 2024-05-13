@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +42,7 @@ class MbtiMainActivity : ComponentActivity() {
 
     @Composable
     fun MainScreen() {
-        val context = LocalContext.current as? Activity
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -52,45 +53,40 @@ class MbtiMainActivity : ComponentActivity() {
 
         ) {
 
-            Image(
-                painter = painterResource(id = R.drawable.infp),
-                contentDescription = "INFP",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(150.dp)
-            )
-            Button(onClick = {
-                val intent = Intent(context, InfpActivity::class.java)
-                context?.startActivity(intent)
-            }, modifier = Modifier.padding(top = 10.dp, bottom = 30.dp)) {
-                Text(text = "INFP")
-            }
-            Image(
-                painter = painterResource(id = R.drawable.isfp),
-                contentDescription = "ISFP",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(150.dp)
-            )
-            Button(onClick = {
-                val intent = Intent(context, IsfpActivity::class.java)
-                context?.startActivity(intent)
-            }, modifier = Modifier.padding(top = 10.dp, bottom = 30.dp)) {
-                Text(text = "ISFP")
-            }
-            Image(
-                painter = painterResource(id = R.drawable.enfp),
-                contentDescription = "ENFP",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(150.dp)
-            )
-            Button(onClick = {
-                val intent = Intent(context, EnfpActivity::class.java)
-                context?.startActivity(intent)
-            }, modifier = Modifier.padding(top = 10.dp, bottom = 30.dp)) {
-                Text(text = "ENFP")
-            }
+            Painting(paintId = R.drawable.infp)
+            MbtiButton(str = "INFP")
+            Painting(paintId = R.drawable.isfp)
+            MbtiButton(str = "ISFP")
+            Painting(R.drawable.enfp)
+            MbtiButton(str = "ENFP")
 
         }
+
+
     }
+    @Composable
+    fun MbtiButton(str:String) {
+        val context = LocalContext.current as? Activity
+        Button(onClick = {
+            val intent = Intent(context, MbtiDescActivity::class.java)
+            intent.putExtra("mbtiData",str)
+            context?.startActivity(intent)
+        }, modifier = Modifier.padding(top = 10.dp, bottom = 30.dp)) {
+            Text(text = str)
+        }
+
+    }
+
+    @Composable
+    fun Painting(paintId :Int) {
+        Image(
+            painter = painterResource(id = paintId),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.size(150.dp)
+        )
+    }
+
 
     @Preview(showBackground = true)
     @Composable

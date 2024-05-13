@@ -29,6 +29,7 @@
         <activity android:name=".InfpActivity"/>
         <activity android:name=".IsfpActivity"/>
         <activity android:name=".EnfpActivity"/>
+        <activity android:name=".MbtiDescActivity"/>
     </application>
 
 </manifest>
