@@ -34,19 +34,23 @@ import androidx.compose.ui.unit.sp
 import com.example.mbti.ui.theme.MbtiTheme
 
 class MbtiDescActivity : ComponentActivity() {
+
+    var mbti = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+        mbti = intent.getStringExtra("mbtiData") ?: ""
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             MbtiTheme {
-                Screening()
+                Screening(mbti)
             }
         }
     }
 
+
     @Composable
     fun MainScreen(paintId: Int, work: String, desc: String) {
-        val mbti = intent.getStringExtra("mbtiData")
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxHeight()
@@ -62,7 +66,7 @@ class MbtiDescActivity : ComponentActivity() {
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = mbti ?: "",
+                text = mbti,
                 modifier = Modifier
                     .background(Color.Green)
                     .fillMaxWidth(),
@@ -104,9 +108,9 @@ class MbtiDescActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Screening() {
-        val str = intent.getStringExtra("mbtiData")
-        when (str) {
+    fun Screening(mbti: String) {
+
+        when (mbti) {
             "ENFP" -> MainScreen(
                 paintId = R.drawable.enfp,
                 work = "활동가",
@@ -131,7 +135,7 @@ class MbtiDescActivity : ComponentActivity() {
     @Composable
     fun MainScreenPreview() {
         MbtiTheme {
-            Screening()
+            Screening(mbti)
         }
     }
 }
