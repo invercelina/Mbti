@@ -57,7 +57,7 @@ class MbtiMainActivity : ComponentActivity() {
             MbtiButton(str = "INFP")
             Painting(paintId = R.drawable.isfp)
             MbtiButton(str = "ISFP")
-            Painting(R.drawable.enfp)
+            Painting(paintId = R.drawable.enfp)
             MbtiButton(str = "ENFP")
 
         }
