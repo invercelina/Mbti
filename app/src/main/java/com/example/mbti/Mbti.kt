@@ -44,9 +44,4 @@ class Explorers(ie: String, tf: String) : Mbti(ie, "S", tf, "P") {
     }
 }
 
-val persona1 = Analysts("I","J")
-persona1.mbtiPrint()
-println(persona1.mbti)
-val persona2 = Diplomats("I","J")
-persona2.mbtiPrint()
-println(persona2.mbti)
+
